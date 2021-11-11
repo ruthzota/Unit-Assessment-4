@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Back End Assessment</title>
+  </head>
+  <body class="container">
+    <h1>The Feel Good Page</h1>
+  <div>
+    <h3>Choose your favorite calm color:</h3>
+    <form>
+      <input type="radio" id="pink" name="fav_color" value="Pink">
+      <label for="pink">Pink</label><br>
+      <input type="radio" id="LightGreen" name="fav_color" value="LightGreen">
+      <label for="LightGreen">Light Green</label><br>
+      <input type="radio" id="skyblue" name="fav_color" value="SkyBlue">
+      <label for="SkyBlue">Sky Blue</label>
+      <br><br>
+      <input type="submit" id="colorIndex" value="Submit">
+    </form>
+  </div>
+
+  <br><br>
+
+  <div>
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton">Get a fortune</button>
+    <button id="colorButton">Change color for mood</button>
+  </div>
+
+  <div>
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="pwd">Password:</label><br>
+      <input type="password" id="pwd" name="pwd">
+      <input type="submit" id="usernameIndex" value="Submit">
+    </form>
+  </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+  
+    <script>
+      const axios = require('axios');
+
+      document.getElementById("complimentButton").onclick = function () {
+        axios.get("http://localhost:4000/api/compliment/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+
+      document.getElementById("fortuneButton").onclick = function () {
+        axios.get("http://localhost:4000/api/forturn/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+
+      document.getElementById("colorIndex").onclick = function () {
+        axios.post("http://localhost:4000/api/color/", {
+        favoriteColor: 'Red',
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+      document.getElementById("usernameIndex").onclick = function () {
+        axios.post("http://localhost:4000/api/user/", { 
+          user,
+        })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    </script>
+  </body>
+</html>
